@@ -1,0 +1,55 @@
+######################################################################
+#  DEEP GALERKIN METHOD (DGM) -- COMPLETE IMPLEMENTATION
+#  Based on: Sirignano & Spiliopoulos (2018)
+######################################################################
+
+======================================================================
+  PROBLEM 1: Black-Scholes PDE via DGM
+  du/dt + 0.5*sig^2*x^2*d2u/dx2 + (r-c)*x*du/dx - r*u = 0
+======================================================================
+  Epoch  1000 | Loss: 3.4700e-03 | PDE: 3.52e-04 | BC: 2.69e-06 | TC: 3.09e-04 | Time: 132.3s
+  Epoch  2000 | Loss: 4.3162e-04 | PDE: 1.14e-04 | BC: 5.08e-07 | TC: 3.13e-05 | Time: 327.4s
+  Epoch  3000 | Loss: 3.2898e-04 | PDE: 1.03e-04 | BC: 2.53e-07 | TC: 2.23e-05 | Time: 526.3s
+  Epoch  4000 | Loss: 1.7840e-04 | PDE: 5.86e-05 | BC: 4.91e-08 | TC: 1.19e-05 | Time: 709.5s
+  Epoch  5000 | Loss: 1.0428e-04 | PDE: 3.41e-05 | BC: 1.26e-07 | TC: 6.89e-06 | Time: 887.0s
+
+  Mean relative error at t=0: 1.25%
+  Max  relative error at t=0: 18.08%
+
+======================================================================
+  PROBLEM 2: Heat Equation via DGM
+  du/dt = nu * d2u/dx2, u(x,0)=sin(pi*x), u(0,t)=u(1,t)=0
+======================================================================
+  Epoch  1000 | Loss: 3.6250e-04 | PDE: 3.10e-04
+  Epoch  2000 | Loss: 2.4669e-04 | PDE: 5.13e-05
+  Epoch  3000 | Loss: 4.2361e-05 | PDE: 3.09e-05
+  Epoch  4000 | Loss: 3.7219e-05 | PDE: 2.55e-05
+  Epoch  5000 | Loss: 2.7560e-05 | PDE: 2.18e-05
+  Max absolute error: 1.7568e-03
+
+======================================================================
+  PROBLEM 3: Burgers' Equation via DGM
+  du/dt + alpha*u*du/dx = nu*d2u/dx2
+======================================================================
+  Epoch  2000 | Loss: 1.4008e-02 | Time: 179.8s
+  Epoch  4000 | Loss: 1.9533e-03 | Time: 320.9s
+  Epoch  6000 | Loss: 1.4053e-03 | Time: 459.4s
+  Epoch  8000 | Loss: 9.7264e-04 | Time: 598.1s
+
+======================================================================
+  PROBLEM 4: 2D Poisson Equation -- DGM vs Standard PINN
+  Laplacian(u) = -2*pi^2*sin(pi*x)*sin(pi*y)
+======================================================================
+
+  Training DGM...
+    Epoch 1000 | Loss: 7.4112e-03
+    Epoch 2000 | Loss: 1.1509e-03
+    Epoch 3000 | Loss: 9.4125e-04
+    DGM max error: 3.8977e-03
+
+  Training PINN...
+    Epoch 1000 | Loss: 3.8074e-01
+    Epoch 2000 | Loss: 6.6251e-02
+    Epoch 3000 | Loss: 2.0303e-02
+    PINN max error: 2.2050e-02
+
